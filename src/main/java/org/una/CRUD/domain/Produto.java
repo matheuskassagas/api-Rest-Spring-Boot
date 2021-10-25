@@ -8,22 +8,23 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Categoria implements Serializable {
+public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String descricao;
+    private Double preco;
 
-    public Categoria(){}
+    public Produto(){}
 
-    public Categoria(Integer id, String nome, String descricao) {
+    public Produto(Integer id, String nome, String descricao, Double preco) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.preco = preco;
     }
 
     public Integer getId() {
@@ -50,12 +51,20 @@ public class Categoria implements Serializable {
         this.descricao = descricao;
     }
 
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Categoria categoria = (Categoria) o;
-        return getId().equals(categoria.getId());
+        Produto produto = (Produto) o;
+        return getId().equals(produto.getId());
     }
 
     @Override
