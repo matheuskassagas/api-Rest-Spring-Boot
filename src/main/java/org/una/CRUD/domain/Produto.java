@@ -1,9 +1,6 @@
 package org.una.CRUD.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -18,13 +15,18 @@ public class Produto implements Serializable {
     private String descricao;
     private Double preco;
 
+    @ManyToOne
+    @JoinColumn(name="categoria_id")
+    private Categoria categoria;
+
     public Produto(){}
 
-    public Produto(Integer id, String nome, String descricao, Double preco) {
+    public Produto(Integer id, String nome, String descricao, Double preco, Categoria categoria) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
+        this.categoria = categoria;
     }
 
     public Integer getId() {

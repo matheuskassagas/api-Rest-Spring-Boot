@@ -1,10 +1,9 @@
 package org.una.CRUD.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,12 +17,16 @@ public class Categoria implements Serializable {
     private String nome;
     private String descricao;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
+    private List<Produto> produtos = new ArrayList<>();
+
     public Categoria(){}
 
-    public Categoria(Integer id, String nome, String descricao) {
+    public Categoria(Integer id, String nome, String descricao, List<Produto> produtos) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.produtos = produtos;
     }
 
     public Integer getId() {
