@@ -4,45 +4,50 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.una.CRUD.domain.Produto;
+import org.una.CRUD.resource.request.ProdutoRequest;
 import org.una.CRUD.service.ProdutoService;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/produtos")
+@RequestMapping(value= "/produtos")
 public class ProdutoResource {
 
     @Autowired
     private ProdutoService produtoService;
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> find (@PathVariable Integer id){
-        Optional<Produto> objProduto = produtoService.find(id);
-        return ResponseEntity.ok().body(objProduto);
+    public ResponseEntity<?> find(@PathVariable Integer id){
+        Optional<Produto> obj = produtoService.find(id);
+        return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(value = "/find", method = RequestMethod.GET)
-    public List<Produto> findAll(){
-        List<Produto> produto = produtoService.findAll();
-        return produto;
+    public List<Produto> findAll (){
+        List<Produto> produtos = produtoService.findAll();
+        return produtos;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Produto create (@RequestBody Produto produto){
-        return produtoService.create(produto);
+    public Produto create (@RequestBody ProdutoRequest produtoRequest) throws Exception {
+        return produtoService.create(produtoRequest);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public Produto update (@PathVariable Integer id, @RequestBody Produto produto){
+    public Produto update (@PathVariable Integer id,@RequestBody Produto produto){
         produto.setId(id);
-        return produtoService.updateById(id, produto);
+        produto = produtoService.updateById(id, produto);
+        return produto;
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public void delete (@PathVariable Integer id){
+    public void delete(@PathVariable Integer id){
         produtoService.deleteById(id);
     }
+
+
 }
+
 
 

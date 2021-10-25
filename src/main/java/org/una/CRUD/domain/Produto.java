@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Table(name = "PRODUTO")
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -20,6 +21,8 @@ public class Produto implements Serializable {
     private Categoria categoria;
 
     public Produto(){}
+
+    public Produto(String nome, String descricao, Double preco, Categoria categoria){}
 
     public Produto(Integer id, String nome, String descricao, Double preco, Categoria categoria) {
         this.id = id;

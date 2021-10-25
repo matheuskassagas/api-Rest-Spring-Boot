@@ -35,7 +35,8 @@ public class CategoriaResource {
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public Categoria update (@PathVariable Integer id, @RequestBody Categoria categoria){
         categoria.setId(id);
-        return categoriaService.updateById(id, categoria);
+        categoria = categoriaService.updateById(id, categoria);
+        return categoria;
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
