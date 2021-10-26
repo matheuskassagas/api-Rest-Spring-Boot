@@ -11,6 +11,8 @@ import org.una.CRUD.resource.request.ProdutoRequest;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Service
 public class ProdutoService {
 
@@ -37,9 +39,13 @@ public class ProdutoService {
         return produtoRepository.create(produto);
     }
 
-    public Produto updateById(Integer id, Produto produto){
-        produto.setId(id);
-        return produtoRepository.update(id, produto);
+    public Produto updateById(Integer idCategoria, ProdutoRequest produtoRequest) throws Exception{
+        Optional<Categoria> categoria = categoriaRepository.findById(produtoRequest.getIdCategoria());
+        if(categoria.isEmpty()){
+            throw new Exception("Id not found");
+        }
+        Produto produto = new Produto(produtoRequest.getNome(), produtoRequest.getDescricao(), produtoRequest.getPreco(), categoria.get());
+        return produtoRepository.update(idCategoria, produto);
     }
 
     public void deleteById(Integer id){

@@ -22,10 +22,8 @@ public class Produto implements Serializable {
 
     public Produto(){}
 
-    public Produto(String nome, String descricao, Double preco, Categoria categoria){}
 
-    public Produto(Integer id, String nome, String descricao, Double preco, Categoria categoria) {
-        this.id = id;
+    public Produto(String nome, String descricao, Double preco, Categoria categoria) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;

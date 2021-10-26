@@ -1,11 +1,15 @@
 package org.una.CRUD.resource.request;
 
-public class ProdutoRequest {
+import org.una.CRUD.domain.Produto;
+
+public class ProdutoRequest extends Produto {
 
     private Integer idCategoria;
     private String nome;
     private String descricao;
     private Double preco;
+
+    public ProdutoRequest(){}
 
     public ProdutoRequest(Integer idCategoria, String nome, String descricao, Double preco) {
         this.idCategoria = idCategoria;
@@ -28,5 +32,21 @@ public class ProdutoRequest {
 
     public Double getPreco() {
         return preco;
+    }
+
+    public void setIdCategoria(Integer idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
     }
 }

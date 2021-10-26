@@ -25,8 +25,8 @@ public class ProdutoRepository {
         return produtoRepositoryJPA.save(produto);
     }
 
-    public Produto update (Integer id, Produto produto){
-        produto.setId(id);
+    public Produto update (Integer idCategoria, Produto produto){
+        produto.setId(idCategoria);
         return produtoRepositoryJPA.save(produto);
     }
 

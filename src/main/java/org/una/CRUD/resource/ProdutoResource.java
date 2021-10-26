@@ -10,6 +10,8 @@ import org.una.CRUD.service.ProdutoService;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @RestController
 @RequestMapping(value= "/produtos")
 public class ProdutoResource {
@@ -35,10 +37,10 @@ public class ProdutoResource {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public Produto update (@PathVariable Integer id,@RequestBody Produto produto){
-        produto.setId(id);
-        produto = produtoService.updateById(id, produto);
-        return produto;
+    public Produto update (@PathVariable Integer idCategoria, @RequestBody ProdutoRequest produtoRequest) throws Exception {
+        produtoRequest.setIdCategoria(idCategoria);
+        produtoRequest = (ProdutoRequest) produtoService.updateById(idCategoria, produtoRequest);
+        return produtoRequest;
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
